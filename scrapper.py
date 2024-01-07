@@ -40,6 +40,7 @@ def get_reviews(asin):
         review_element_1 = soup.find_all('div', class_="a-row a-spacing-small review-data")
 
         for review_element in zip(review_elements, review_element_1):
+            # print(review_element[0].text.strip() + review_element[1].text.strip())
             review_list.append(review_element[0].text.strip() + review_element[1].text.strip())
 
         next_button = soup.find('li', class_='a-last')
@@ -51,14 +52,17 @@ def get_reviews(asin):
         time.sleep(10) 
     return review_list
 
-def store_reviews(url):
-    asin = extract_asin(url)
-    reviews = get_reviews(asin)
-    csv_file_path = 'reviews.csv'
-    with open(csv_file_path, 'w', newline='', encoding='utf-8') as csv_file:
-        csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(['Reviews'])
-        for review_text in reviews:
-            csv_writer.writerow([review_text])
+# amazon_url = "https://www.amazon.in/Samsung-Galaxy-Ultra-Green-Storage/dp/B0BTYWFXKC/ref=sr_1_1?crid=SCY9POQUG62U&keywords=samsung+s23+ultra+5g&qid=1704572312&sprefix=%2Caps%2C181&sr=8-1"
+# asin = extract_asin(amazon_url)
 
-    print(f"Reviews have been saved to {csv_file_path}.")
+# reviews = get_reviews(asin)
+
+
+# csv_file_path = 'reviews.csv'
+# with open(csv_file_path, 'w', newline='', encoding='utf-8') as csv_file:
+#     csv_writer = csv.writer(csv_file)
+#     csv_writer.writerow(['Reviews'])
+#     for review_text in reviews:
+#         csv_writer.writerow([review_text])
+
+# print(f"Reviews have been saved to {csv_file_path}.")
